@@ -52,7 +52,7 @@ function Main() {
       setLoading(true);
       try {
         const apiUrl =
-          "http://draft.premierleague.com/api/league/99028/details";
+          "https://draft.premierleague.com/api/league/99028/details";
         const response = await axios.get(apiUrl);
         setStandings(response.data.standings);
         setManagers(data.league_entries);
