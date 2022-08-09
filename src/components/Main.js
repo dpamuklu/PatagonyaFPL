@@ -46,22 +46,14 @@ function Main() {
       default:
     }
   };
-
+  const apiUrl = "https://draft.premierleague.com/api/league/99028/details";
+  const proxyURL = "https://cors-anywhere.herokuapp.com/";
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
       try {
-        const apiUrl =
-          "https://draft.premierleague.com/api/league/99028/details";
-        const response = await axios(apiUrl, {
-          method: "GET",
-          mode: "no-cors",
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-          credentials: "same-origin",
+        const response = await axios.get(proxyURL + apiUrl, {
+          headers: {},
         });
         setStandings(response.data.standings);
         setManagers(data.league_entries);
@@ -76,7 +68,6 @@ function Main() {
       const response = await axios.get(priceUrl);
       setAmountInTRY(0.00577931 * response.data.TRY.last);
     };
-
     getData();
     getPrice();
   }, []);
