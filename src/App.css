@@ -1,0 +1,20 @@
+.text {
+  text-align: center;
+  color: gray;
+}
+
+.error {
+  text-align: center;
+}
+
+.footer-1 {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.reward {
+  background-color: rgb(193, 230, 193);
+}
+
+.relagate {
+  background-color: rgb(230, 177, 177);
+}
