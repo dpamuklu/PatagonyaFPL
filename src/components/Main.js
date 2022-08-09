@@ -53,7 +53,16 @@ function Main() {
       try {
         const apiUrl =
           "https://draft.premierleague.com/api/league/99028/details";
-        const response = await axios.get(apiUrl);
+        const response = await axios(apiUrl, {
+          method: "GET",
+          mode: "no-cors",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+          credentials: "same-origin",
+        });
         setStandings(response.data.standings);
         setManagers(data.league_entries);
       } catch (error) {
