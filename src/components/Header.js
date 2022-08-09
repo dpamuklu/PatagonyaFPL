@@ -5,7 +5,7 @@ function Header() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#">Patagonya FPL</Navbar.Brand>
+        <Navbar.Brand href="#">Patagonya FPL III</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       </Container>
     </Navbar>
