@@ -52,9 +52,16 @@ function Main() {
     const getData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(proxyURL + apiUrl, {
-          headers: {},
+        const response = await axios.get(apiUrl, {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          },
         });
+        console.log(response);
         setStandings(response.data.standings);
         setManagers(data.league_entries);
       } catch (error) {
