@@ -46,23 +46,14 @@ function Main() {
       default:
     }
   };
-  const baseURL = "https://draft.premierleague.com/api/league/99028/details";
-  const proxyURL = "https://cors-anywhere.herokuapp.com/";
-  const config = {
-    baseURL,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-      "Access-Control-Allow-Headers": "Origin",
-    },
-  };
+  const baseURL = "http://localhost:5000/";
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
       try {
-        const response = await axios(config);
-        console.log(response);
-        // setStandings(response.data.standings);
+        const response = await axios(baseURL);
+        setStandings(response.data.standings);
         setManagers(data.league_entries);
       } catch (error) {
         setError(error);
