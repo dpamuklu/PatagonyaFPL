@@ -1,10 +1,13 @@
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Standings from "./Standings";
+import Fixtures from "./Fixtures";
+import Results from "./Results";
+import APIContext from "../context/APIContext";
 
 function Main() {
   return (
-    <>
+    <APIContext>
       <Tabs
         defaultActiveKey="home"
         transition={false}
@@ -15,13 +18,13 @@ function Main() {
           <Standings></Standings>
         </Tab>
         <Tab eventKey="profile" title="Results">
-          <div>test</div>
+          <Results></Results>
         </Tab>
         <Tab eventKey="contact" title="Fixtures">
-          <div>test</div>
+          <Fixtures></Fixtures>
         </Tab>
       </Tabs>
-    </>
+    </APIContext>
   );
 }
 

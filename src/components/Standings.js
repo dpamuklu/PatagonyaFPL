@@ -1,38 +1,11 @@
-import React from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 import Table from "react-bootstrap/Table";
-import { useEffect, useState } from "react";
 import Loader from "../components/Loader";
+import { apiContext } from "../context/APIContext";
 
 const Standings = () => {
-  const [standings, setStandings] = useState("");
-  const baseURL = "https://patagonya-fplb-ackend.vercel.app/";
-  const [managers, setManagers] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [amountInTRY, setAmountInTRY] = useState(0);
-
-  useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      try {
-        const response = await axios(baseURL);
-        setStandings(response.data.standings);
-        setManagers(response.data.league_entries);
-      } catch (error) {
-        setError(error);
-      }
-      setLoading(false);
-    };
-
-    const getPrice = async () => {
-      const priceUrl = "https://blockchain.info/ticker";
-      const response = await axios.get(priceUrl);
-      setAmountInTRY(0.00577931 * response.data.TRY.last);
-    };
-    getData();
-    getPrice();
-  }, []);
+  const { standings, managers, error, loading, amountInTRY } =
+    useContext(apiContext);
 
   const getTeam = (id) => {
     let team = "";
@@ -45,17 +18,6 @@ const Standings = () => {
     return team;
   };
 
-  const getTeamName = (id) => {
-    console.log(id, "test");
-    let team = "";
-    managers.forEach((manager) => {
-      if (manager.id === id) {
-        team = `${manager.player_first_name} - ${manager.player_last_name}`;
-        return;
-      }
-    });
-    return team;
-  };
   const setAmountByRank = (rank) => {
     switch (rank) {
       case 1:
