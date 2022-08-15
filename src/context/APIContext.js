@@ -46,6 +46,17 @@ export default function APIContext({ children }) {
       return team;
     };
 
+    const getRank = (id) => {
+      let rank = "";
+      standings.forEach((team) => {
+        if (team.league_entry === id) {
+          rank = team.rank_sort;
+          return;
+        }
+      });
+      return rank;
+    };
+
     const filterMatches = (matches) => {
       const result = [];
       if (standings) {
@@ -55,10 +66,12 @@ export default function APIContext({ children }) {
 
         for (const match of filteredMatches) {
           const team1 = getTeam(match.league_entry_1);
+          const team1Rank = getRank(match.league_entry_1);
           const team2 = getTeam(match.league_entry_2);
+          const team2Rank = getRank(match.league_entry_2);
           const score1 = match.league_entry_1_points;
           const score2 = match.league_entry_2_points;
-          result.push({ team1, score1, team2, score2 });
+          result.push({ team1, team1Rank, score1, team2, team2Rank, score2 });
         }
         return result;
       }
@@ -73,10 +86,12 @@ export default function APIContext({ children }) {
 
         for (const match of filteredMatches) {
           const team1 = getTeam(match.league_entry_1);
+          const team1Rank = getRank(match.league_entry_1);
           const team2 = getTeam(match.league_entry_2);
+          const team2Rank = getRank(match.league_entry_2);
           const score1 = match.league_entry_1_points;
           const score2 = match.league_entry_2_points;
-          result.push({ team1, score1, team2, score2 });
+          result.push({ team1, team1Rank, score1, team2, team2Rank, score2 });
         }
         return result;
       }
@@ -101,6 +116,7 @@ export default function APIContext({ children }) {
         amountInTRY,
         results,
         fixtures,
+        gameweek,
       }}
     >
       {children}

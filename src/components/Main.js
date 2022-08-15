@@ -17,11 +17,11 @@ function Main() {
         <Tab eventKey="home" title="Standings">
           <Standings></Standings>
         </Tab>
-        <Tab eventKey="profile" title="Results">
-          <Results></Results>
-        </Tab>
         <Tab eventKey="contact" title="Fixtures">
           <Fixtures></Fixtures>
+        </Tab>
+        <Tab eventKey="profile" title="Results">
+          <Results></Results>
         </Tab>
       </Tabs>
     </APIContext>
